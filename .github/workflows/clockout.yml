@@ -5,7 +5,7 @@ name: clockout-app
 
 on:
     schedule:
-        - cron: "57 9 * * 1-5"
+        - cron: '57 9 * * 1-5'
     workflow_dispatch:
 
 jobs:

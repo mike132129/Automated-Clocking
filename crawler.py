@@ -11,7 +11,7 @@ class webCrawler:
 
     def startup(self):
         chromeOptions = Options()
-        chromeOptions.add_argument("--window-size=1920,1080")
+        chromeOptions.headless=True
         prefs = {"credentials_enable_service": False,
          "profile.password_manager_enabled": False}
         chromeOptions.add_experimental_option("prefs", prefs)
@@ -39,13 +39,13 @@ class webCrawler:
         sleep(5)
 
     def clockin(self):
-        clockin_div = self.driver.find_element_by_css_selector('.desktopsite_view #clockin')
+        clockin_div = self.driver.find_elements_by_id('clockin')[0]
         sleep(1)
         self.mouseMoveAndClick(clockin_div)
         print('clockin finish')
 
     def clockout(self):
-        clockout_div = self.driver.find_element_by_css_selector('.desktopsite_view #clockout')
+        clockout_div = self.driver.find_elements_by_id('clockout')[0]
         sleep(1)
         self.mouseMoveAndClick(clockout_div)
         print('clockout finish')

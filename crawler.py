@@ -1,9 +1,10 @@
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
+from  argparse import ArgumentParser
 from time import sleep
 
 class webCrawler:
-    def __init__(self, username, password):
+    def __init__(self, username=None, password=None):
         self.driver = self.startup()
         self.username = username
         self.password = password
@@ -38,18 +39,40 @@ class webCrawler:
         sleep(5)
 
     def clockin(self):
-        clockin_button = self.driver.find_element_by_xpath('//div[@class="clock_btn margin-right-5 padding-all-20 Link ctrl-clockin" and @id="clockin"]')
-        clockin_button.click()
+        clockin_div = self.driver.find_element_by_css_selector('.desktopsite_view #clockin')
+        sleep(1)
+        self.mouseMoveAndClick(clockin_div)
         print('clockin finish')
 
     def clockout(self):
-        clockout_button = self.driver.find_element_by_xpath('//div[@class="clock_btn margin-right-5 padding-all-20 Link ctrl-clockin" and @id="clockout"]')
-        clockout_button.click()
+        clockout_div = self.driver.find_element_by_css_selector('.desktopsite_view #clockout')
+        sleep(1)
+        self.mouseMoveAndClick(clockout_div)
         print('clockout finish')
+    
+    def mouseMoveAndClick(self, element):
+        action = webdriver.ActionChains(self.driver)
+        action.move_to_element(element).click(element).perform()
+
+
+def argument_parse():
+    parser = ArgumentParser()
+    parser.add_argument('--username')
+    parser.add_argument('--password')
+    parser.add_argument('--action')
+    args = parser.parse_args()
+    return args
+
 
 if __name__ == '__main__':
-    crawler = webCrawler("LN0041", "mike980340")
+    options = argument_parse()
+    crawler = webCrawler(options.username, options.password)
     crawler.login()
-    crawler.clockout()
+
+    if options.action == 'clockin':
+        crawler.clockin()
+
+    elif options.action == 'clockout':
+        crawler.clockout()
 
 

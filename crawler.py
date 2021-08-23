@@ -59,7 +59,7 @@ def argument_parse():
     parser = ArgumentParser()
     parser.add_argument('--username')
     parser.add_argument('--password')
-    parser.add_argument('--action')
+    parser.add_argument('--action', default='clockin')
     args = parser.parse_args()
     return args
 

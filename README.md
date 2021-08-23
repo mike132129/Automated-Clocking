@@ -14,7 +14,7 @@ Adding the `username` and `password` `Repository secrets`
 
 where `username` is your personal `員工編號` in <https://cloud.nueip.com/login/lawsnote>;
 
-password is your `密碼`
+`password` is your `密碼`
 
 ![image](https://user-images.githubusercontent.com/48711966/130392995-f3d06669-3b85-47dd-8343-c6356ac2ef26.png)
 

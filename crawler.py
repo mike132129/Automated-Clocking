@@ -63,12 +63,17 @@ class webCrawler:
         action.move_to_element(element).click(element).perform()
 
     def checkUserAttendance(self):
-        reminders = self.driver.find_elements_by_id('collapseOne')[0].text     
+        reminders = self.driver.find_elements_by_id('collapseOne')[0].text.split()   
         selfName = self.driver.find_elements_by_id('user-dropdown')[0].text.split()[0]
-        if selfName not in reminders:
+
+        if reminders == "無提醒事項":
             return True
+
+        for element in reminders:
+            if element == selfName:      
+                return False
         else:
-            return False
+            return True
 
 def argument_parse():
     parser = ArgumentParser()

@@ -40,19 +40,39 @@ class webCrawler:
 
     def clockin(self):
         clockin_div = self.driver.find_elements_by_id('clockin')[0]
-        sleep(1)
-        self.mouseMoveAndClick(clockin_div)
-        print('clockin finish')
+        attence = self.checkUserAttendance()
+        if attence == True:
+            self.mouseMoveAndClick(clockin_div)
+            print('clockin finish')
+        else:
+            print("no need to clockin")        
 
     def clockout(self):
         clockout_div = self.driver.find_elements_by_id('clockout')[0]
-        sleep(1)
-        self.mouseMoveAndClick(clockout_div)
-        print('clockout finish')
-    
+        attence = self.checkUserAttendance()
+        if attence == True:
+            self.mouseMoveAndClick(clockout_div)
+            print('clockout finish')
+        else:
+            print("no need to clockout")
+        
     def mouseMoveAndClick(self, element):
         action = webdriver.ActionChains(self.driver)
         action.move_to_element(element).click(element).perform()
+
+    def checkUserAttendance(self):
+        sleep(1)
+        reminders = self.driver.find_elements_by_id('collapseOne')[0].text.split("\n")  
+        selfName = self.driver.find_elements_by_id('user-dropdown')[0].text.split()[0]
+        absentees = []
+        for reminder in reminders:
+            absentees.append(reminder.split()[1])
+
+        for absentee in absentees:
+            if absentee == selfName:   
+                return False
+        else:
+            return True
 
 
 def argument_parse():

@@ -42,7 +42,6 @@ class webCrawler:
         clockin_div = self.driver.find_elements_by_id('clockin')[0]
         attence = self.checkUserAttendance()
         if attence == True:
-            sleep(1)
             self.mouseMoveAndClick(clockin_div)
             print('clockin finish')
         else:
@@ -52,7 +51,6 @@ class webCrawler:
         clockout_div = self.driver.find_elements_by_id('clockout')[0]
         attence = self.checkUserAttendance()
         if attence == True:
-            sleep(1)
             self.mouseMoveAndClick(clockout_div)
             print('clockout finish')
         else:
@@ -63,17 +61,19 @@ class webCrawler:
         action.move_to_element(element).click(element).perform()
 
     def checkUserAttendance(self):
-        reminders = self.driver.find_elements_by_id('collapseOne')[0].text.split()   
+        sleep(1)
+        reminders = self.driver.find_elements_by_id('collapseOne')[0].text.split("\n")  
         selfName = self.driver.find_elements_by_id('user-dropdown')[0].text.split()[0]
+        absentees = []
+        for reminder in reminders:
+            absentees.append(reminder.split()[1])
 
-        if reminders == "無提醒事項":
-            return True
-
-        for element in reminders:
-            if element == selfName:      
+        for absentee in absentees:
+            if absentee == selfName:   
                 return False
         else:
             return True
+
 
 def argument_parse():
     parser = ArgumentParser()

@@ -64,6 +64,10 @@ class webCrawler:
         sleep(1)
         reminders = self.driver.find_elements_by_id('collapseOne')[0].text.split("\n")  
         selfName = self.driver.find_elements_by_id('user-dropdown')[0].text.split()[0]
+        
+        if len(reminders) == 1 and reminders[0] == "無提醒事項":
+            return True
+
         absentees = []
         for reminder in reminders:
             absentees.append(reminder.split()[1])

@@ -10,7 +10,7 @@ Select the "Secrets" in the left of the list
 
 ![image](https://user-images.githubusercontent.com/48711966/130392762-58eb6a31-0cc4-4945-965f-5d1d67793819.png)
 
-Adding the `username` and `password` `Repository secrets`
+Add two `Repository secrets`, `username` and `password`.
 
 where `username` is your personal `員工編號` in <https://cloud.nueip.com/login/lawsnote>;
 
@@ -18,7 +18,9 @@ where `username` is your personal `員工編號` in <https://cloud.nueip.com/log
 
 ![image](https://user-images.githubusercontent.com/48711966/130392995-f3d06669-3b85-47dd-8343-c6356ac2ef26.png)
 
-2. Setting the clock in-and-out time (Optional)
+2. Remember to enable the workflow manually in `Action`.
+
+3. Setting the clock in-and-out time (Optional)
 
 To change the clocking time, (default clockin: 9:58 a.m., clockout: 17:57), you need to edit the file in the `.github/workflows/clockin.yml` and `.github/workflows/clockout.yml` with crontab format.
 

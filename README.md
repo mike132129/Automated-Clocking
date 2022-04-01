@@ -10,7 +10,7 @@ Select the "Secrets" in the left of the list
 
 ![image](https://user-images.githubusercontent.com/48711966/130392762-58eb6a31-0cc4-4945-965f-5d1d67793819.png)
 
-Add two `Repository secrets`, `username` and `password`.
+Add two "Repository secrets", `username` and `password`.
 
 where `username` is your personal `員工編號` in <https://cloud.nueip.com/login/lawsnote>;
 

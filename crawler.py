@@ -17,7 +17,7 @@ class webCrawler:
         chromeOptions.add_experimental_option("prefs", prefs)
         chromeOptions.add_experimental_option("excludeSwitches", ["enable-automation"])
         chromeOptions.add_experimental_option('useAutomationExtension', False)
-        driver = webdriver.Chrome(chrome_options=chromeOptions)
+        driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=chromeOptions)
         driver.get('https://cloud.nueip.com/')
         return driver
 
@@ -42,7 +42,7 @@ class webCrawler:
         clockin_div = self.driver.find_elements_by_id('clockin')[0]
         attence = self.checkUserAttendance()
         if attence == True:
-            self.mouseMoveAndClick(clockin_div)
+            # self.mouseMoveAndClick(clockin_div)
             print('clockin finish')
         else:
             print("no need to clockin")        
@@ -51,7 +51,7 @@ class webCrawler:
         clockout_div = self.driver.find_elements_by_id('clockout')[0]
         attence = self.checkUserAttendance()
         if attence == True:
-            self.mouseMoveAndClick(clockout_div)
+            # self.mouseMoveAndClick(clockout_div)
             print('clockout finish')
         else:
             print("no need to clockout")
@@ -64,16 +64,16 @@ class webCrawler:
         sleep(1)
         reminders = self.driver.find_elements_by_id('collapseOne')[0].text.split("\n")  
         selfName = self.driver.find_elements_by_id('user-dropdown')[0].text.split()[0]
-        
         if len(reminders) == 1 and reminders[0] == "無提醒事項":
             return True
 
         absentees = []
+
         for reminder in reminders:
-            absentees.append(reminder.split()[1])
+            absentees.append(reminder.split('，')[0])
 
         for absentee in absentees:
-            if absentee == selfName:   
+            if selfName in absentee:   
                 return False
         else:
             return True

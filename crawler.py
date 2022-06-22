@@ -17,7 +17,7 @@ class webCrawler:
         chromeOptions.add_experimental_option("prefs", prefs)
         chromeOptions.add_experimental_option("excludeSwitches", ["enable-automation"])
         chromeOptions.add_experimental_option('useAutomationExtension', False)
-        driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=chromeOptions)
+        driver = webdriver.Chrome(chrome_options=chromeOptions)
         driver.get('https://cloud.nueip.com/')
         return driver
 

@@ -51,7 +51,7 @@ class webCrawler:
         clockout_div = self.driver.find_elements_by_id('clockout')[0]
         attence = self.checkUserAttendance()
         if attence == True:
-            # self.mouseMoveAndClick(clockout_div)
+            self.mouseMoveAndClick(clockout_div)
             print('clockout finish')
         else:
             print("no need to clockout")

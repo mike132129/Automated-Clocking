@@ -42,7 +42,7 @@ class webCrawler:
         clockin_div = self.driver.find_elements_by_id('clockin')[0]
         attence = self.checkUserAttendance()
         if attence == True:
-            # self.mouseMoveAndClick(clockin_div)
+            self.mouseMoveAndClick(clockin_div)
             print('clockin finish')
         else:
             print("no need to clockin")        
